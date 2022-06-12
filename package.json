@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --config ./config/webpack.dev.js  --color ",
-    "devserver": "webpack-dev-server  --config ./config/webpack.dev.js  --color ",
+    "dev": "webpack --env development -c ./config/webpack.config.js  --color ",
+    "devserver": "webpack-dev-server --env development -c ./config/webpack.config.js  --color ",
     "help": "webpack --help",
-    "build": "webpack  --config ./config/webpack.prod.js  --color "
+    "build": "webpack --env production -c ./config/webpack.config.js  --color "
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.2",
+    "webpack-merge": "^5.8.0",
     "xml-loader": "^1.2.1",
     "yaml": "^2.1.1"
   },

@@ -260,3 +260,22 @@ true, development: true }
 
 
  npm i terser-webpack-plugin -D
+
+
+
+出现的 警告   针对性能进行配置
+ ````
+ WARNING in asset size limit: The following asset(s) exceed the recommended size limitThis can impact web performance.
+Assets:
+  scripts/vendors95e20.js (1010 KiB)
+
+WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+````
+
+
+// 性能配置
+const  performance={
+    hints:false
+}
+
+提取公共的webpack配置
