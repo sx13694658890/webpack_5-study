@@ -1,0 +1,7 @@
+{
+    // comment
+    title:"JSON Example",
+    owner:{
+        name:"Tom Perston-Werner"
+    }
+}

@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #ddd;
+    /* background-image: url(./assets/111.jfif) no-repeat; */
+}   
+
+@font-face {
+    font-family: "iconfont";
+    src:url("./assets/iconfont/iconfont.woff2") format("woff2"),
+    url("./assets/iconfont/iconfont.woff") format("woff"),
+    url("./assets/iconfont/iconfont.ttf") format('truetype');
+}
+.icon{
+    font-family: "iconfont";
+    font-size: 30px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-weixin:before {
+    content: "\e601";
+  }
+  
+  .icon-haoyou:before {
+    content: "\e600";
+  }
+  
+  .icon-bianji1:before {
+    content: "\e619";
+  }
+  
+  .icon-shuaxin:before {
+    content: "\e60f";
+  }
+  
+  .icon-bofang:before {
+    content: "\e61e";
+  }
+  
+  .icon-play:before {
+    content: "\e664";
+  }
+  
+  .icon-bianji:before {
+    content: "\e609";
+  }
+  
+  .icon-baocun:before {
+    content: "\e6bf";
+  }
+  
+  

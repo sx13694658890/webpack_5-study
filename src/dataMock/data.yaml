@@ -1,0 +1,7 @@
+title: YAML Example
+owner:
+  name: Tom 
+  organization: GitHub
+  bio: |-
+    GitHub Cofounder & CEO
+  dob: 197-05-27

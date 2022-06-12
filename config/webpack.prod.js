@@ -1,7 +1,9 @@
 const { resolve }=require("path") ;
 const HtmlWbpackPlugin=require("html-webpack-plugin");
 const MiniCssExtractPlugin=require("mini-css-extract-plugin");
-
+const CssMinimizerWebpackPlugin=require("css-minimizer-webpack-plugin");
+// const {CleanWebpackPlugin} =require("clean-webpack-plugin");
+const TerserWebpackPlugin=require("terser-webpack-plugin");
 const toml=require("toml");
 const yaml=require("yaml");
 const json5=require("json5");
@@ -24,10 +26,10 @@ const config={
         // another:resolve(__dirname,"../src/another-module.js"),
     },
     output:{
-        filename:"scripts/[name].js",
+        filename:"scripts/[name][contenthash:5].js",
         path:resolve(__dirname,"../dist"),
         clean:true, //  清除 打包
-        
+        publicPath:"http://127.0.0.1:8080/dist/"
         // assetModuleFileName:"./images/[name][ext]"
     }
 }
@@ -45,12 +47,7 @@ const plugins=[
     }),
     // new CleanWebpackPlugin()
 ]
-const devServer={
-    static:"./dist",
-    port:"3000",
-    hot:true,
-    open:true
-}
+
 
 const moduleRule={
     rules:[
@@ -134,7 +131,10 @@ const moduleRule={
 // 优化
 
 const optimization={
-   
+    minimizer:[
+        new CssMinimizerWebpackPlugin(),
+        new TerserWebpackPlugin()
+    ],
     splitChunks:{
         //chunks:"all" //  js 代码抽离  共用js代码
         cacheGroups:{
@@ -149,17 +149,12 @@ const optimization={
 }
 
 module.exports=(env)=>{
-    const  mode="development";
-   
+    const  mode="production";
     return {
         mode,
         ...config,
-        devtool:"inline-source-map",
-        devServer,
         plugins,
         module:moduleRule,
         optimization
-    
-    
     }
 }
