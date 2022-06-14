@@ -1,4 +1,16 @@
-console.log("welcome webpack 5  study!!!!!!!!!!!!!!!!!!!!")
+
+if("serviceWorker" in navigator){
+    window.addEventListener("load",()=>{
+        navigator.serviceWorker.register("/service-worker.js").then(registration=>{
+            console.log("注册成功：",registration);
+        }).catch(registrationError=>{
+            console.log("注册失败：",registrationError);
+        })
+    })
+    
+}
+
+console.log("welcome webpack 5  study!!!!!!!!!!!!!!!!!!!!");
 
 
 
@@ -40,7 +52,7 @@ console.log(json5);// object  json 模块
  demo()
 
 // 引入第三方库
-import _ from "lodash";
+// import _ from "lodash";
 
 console.log(_.join([4,5,6]," "));
 
@@ -75,3 +87,46 @@ btn2.addEventListener("click",()=>{
         })
 })
 document.body.appendChild(btn2)
+
+
+// fetch 请求
+import "./utils/request.js"
+
+
+
+
+// 模块热替换
+
+
+if(module.hot){
+    module.hot.accept("./index.js",()=>{
+        
+    })
+}
+
+
+//   web works
+
+
+const worker=new Worker(new URL("./utils/work.js",import.meta.url));
+
+worker.postMessage({
+    question:"hi,那边的woker"
+})
+
+
+worker.onmessage=(message)=>{
+    console.log(message)
+}
+
+
+//   引入ts 文件
+
+
+
+import {age} from "./ts/demo"
+
+
+
+
+// this.alert("improts-loader")

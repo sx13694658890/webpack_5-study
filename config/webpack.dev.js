@@ -1,4 +1,5 @@
 const { resolve }=require("path") ;
+const { BundleAnalyzerPlugin } =require("webpack-bundle-analyzer")
 const config={
    
     entry:{
@@ -25,14 +26,38 @@ const config={
 }
 const devServer={
     static:"./dist",
-    port:"3000",
-    hot:true,
-    open:true
+    port:3000,
+    hot:true,       //  hmr     修改内容后自动切换页面
+    liveReload:true,// 热加载   帮助自动加载页面
+   //open:true,
+    compress:true,// 是否压缩保证服务器到浏览器Content-Encoding:gzip
+    headers:{
+        "X-Access-Token":"abc123"
+    },
+    proxy:{
+        "/api":"http://localhost:8088",
+        originPath:"",
+        pathRewrite:""
+    },
+    // https:true
+
+    // historyApiFallback:true
+   // host:"0.0.0.0",   // 局域网访问    http://192.168.0.109:3000/
+    client:{
+        overlay:false
+    },
+    devMiddleware:{
+       writeToDisk:true
+    }
 }
+// const plugins=[
+//     new BundleAnalyzerPlugin()
+// ]
 
 module.exports={
     mode:"development",
     ...config,
     devtool:"inline-source-map",
     devServer,
+    // plugins
 }

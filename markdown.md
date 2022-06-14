@@ -279,3 +279,249 @@ const  performance={
 }
 
 提取公共的webpack配置
+
+
+eval    module 会被包裹通过eval
+source-map 
+
+hidden-source-map
+
+
+eval-source-map
+
+cheap-source-map
+cheap-module-source-map
+
+htts： 由于默认配置使用的是自签名证书   所以浏览器是提示不安全的
+devServer:{
+
+    https:{
+        cacert:"./server.pem",
+        pfx:"./server.pfx",
+        key:"./server.key",
+        cert:"./server.crt",
+        passphrase:"webpack-dev-server",
+        requestCert:true
+    }
+}
+
+
+http2  自带证书
+
+
+
+
+eslint     扫描代码是否符合规范
+npx eslint --init   安装
+````
+PS E:\webpack项目\webpack 5\webpack_5-study> npx eslint --init
+npx: 82 安装成功，用时 23.989 秒
+You can also run this command directly using 'npm init @eslint/config'.
+npx: 40 安装成功，用时 12.761 秒
+√ How would you like to use ESLint? · style       
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · none
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ How would you like to define a style for your project? · guide
+√ Which style guide do you want to follow? · airbnb
+√ What format do you want your config file to be in? · JSON
+Checking peerDependencies of eslint-config-airbnb-base@latest
+Local ESLint installation not found.
+The config that you've selected requires the following dependencies:
+````
+
+
+
+
+git  提交时候做代码检查  husky   提交代码检查
+
+
+
+git-hooks
+
+
+
+cd  .git
+
+
+ls -la
+
+```
+$ ls -la
+total 28
+drwxr-xr-x 1 sxl 197121    0 Jun 13 02:52 ./
+drwxr-xr-x 1 sxl 197121    0 Jun 13 23:30 ../
+-rw-r--r-- 1 sxl 197121   27 Jun 13 02:52 COMMIT_EDITMSG
+-rw-r--r-- 1 sxl 197121   20 Jun 12 14:54 HEAD
+-rw-r--r-- 1 sxl 197121  367 Jun 12 14:55 config
+-rw-r--r-- 1 sxl 197121   73 Jun 12 11:34 description
+drwxr-xr-x 1 sxl 197121    0 Jun 12 11:34 hooks/
+-rw-r--r-- 1 sxl 197121 3432 Jun 13 02:52 index
+drwxr-xr-x 1 sxl 197121    0 Jun 12 11:34 info/
+drwxr-xr-x 1 sxl 197121    0 Jun 12 14:54 logs/
+drwxr-xr-x 1 sxl 197121    0 Jun 13 02:52 objects/
+drwxr-xr-x 1 sxl 197121    0 Jun 12 14:55 refs/
+
+```
+
+
+cd hooks
+
+```
+$ ls -la
+total 53
+drwxr-xr-x 1 sxl 197121    0 Jun 12 11:34 ./
+drwxr-xr-x 1 sxl 197121    0 Jun 13 02:52 ../
+-rwxr-xr-x 1 sxl 197121  478 Jun 12 11:34 applypatch-msg.sample*
+-rwxr-xr-x 1 sxl 197121  896 Jun 12 11:34 commit-msg.sample*
+-rwxr-xr-x 1 sxl 197121 4655 Jun 12 11:34 fsmonitor-watchman.sample*
+-rwxr-xr-x 1 sxl 197121  189 Jun 12 11:34 post-update.sample*
+-rwxr-xr-x 1 sxl 197121  424 Jun 12 11:34 pre-applypatch.sample*
+-rwxr-xr-x 1 sxl 197121 1643 Jun 12 11:34 pre-commit.sample*
+-rwxr-xr-x 1 sxl 197121  416 Jun 12 11:34 pre-merge-commit.sample*
+-rwxr-xr-x 1 sxl 197121 1374 Jun 12 11:34 pre-push.sample*
+-rwxr-xr-x 1 sxl 197121 4898 Jun 12 11:34 pre-rebase.sample*
+-rwxr-xr-x 1 sxl 197121  544 Jun 12 11:34 pre-receive.sample*
+-rwxr-xr-x 1 sxl 197121 1492 Jun 12 11:34 prepare-commit-msg.sample*
+-rwxr-xr-x 1 sxl 197121 2783 Jun 12 11:34 push-to-checkout.sample*
+-rwxr-xr-x 1 sxl 197121 3650 Jun 12 11:34 update.sample*
+
+
+```
+
+
+新建一个pre-commit     touch  pre-commit
+vim  pre-commit   编辑
+
+
+git config core.hooksPath  .mygithooks
+
+
+
+husky  自动
+
+
+
+外部扩展
+
+externalsType: "script",
+  externals: {
+    jquery: ["地址", "$"],
+  },
+
+
+依赖图  
+
+ webpack-bundle-analyzer   
+
+
+css 模块  postCss
+
+
+web works
+
+
+
+
+ts 配置
+
+
+ts-loader
+
+npx tsc --init
+
+
+npm webapck serve
+
+
+
+多页面应用
+
+
+
+tree-shaking     摇树  自动把没用的代码删掉
+
+
+
+
+
+PWA     渐进式网络应用
+
+
+workbox-webpack-plugin     离线依旧能运行
+
+~~~~
+new WorkBoxPlugin.GenerateSW({
+      clientsClaim:true,  // 快速启用serverwork
+      skipWaiting:true,    // 不允许使用旧的severwork
+   
+  })
+
+
+
+  if("serviceWorker" in navigator){
+    window.addEventListener("load",()=>{
+        navigator.serviceWorker.register("/service-worker.js").then(registration=>{
+            console.log("注册成功：",registration);
+        }).catch(registrationError=>{
+            console.log("注册失败：",registrationError);
+        })
+    })
+    
+}
+~~~~
+chrome://serviceworker-internals/  查看
+
+
+
+
+##### shimming    预制全局变量    细颗粒度
+
+ new webpack.ProvidePlugin({
+    _:"lodash"
+  })
+
+  这样就可以在全局使用
+
+
+  imports-loader    
+
+   {
+      test:require.resolve("../src/index.js"),
+      use:"imports-loader?wrapper=window"
+    }
+
+
+exports-loader
+
+
+
+@babel/polyfill   实现优雅降级   适应低版本浏览器
+core-js@3
+
+ use: [
+        {
+          loader: "babel-loader",
+          options: {
+            presets: [["@babel/preset-env",{
+            targets:["last 1 versions",">1%"],
+             useBuiltIns:"usage",
+             corejs:3
+            }]],
+            plugins: [["@babel/plugin-transform-runtime"]],
+          },
+        },
+      ],
+
+
+library     
+
+
+output: {
+    filename: "scripts/[name].js",
+    path: resolve(__dirname, "../dist"),
+    clean: true, //  清除 打包
+    library:"mylib"
+    // assetModuleFileName:"./images/[name][ext]"
+  },
