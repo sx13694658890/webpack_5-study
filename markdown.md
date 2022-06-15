@@ -525,3 +525,42 @@ output: {
     library:"mylib"
     // assetModuleFileName:"./images/[name][ext]"
   },
+
+
+
+
+  npm 发包
+
+
+  npm config get regisry    查看镜像源
+
+
+
+npm adduser
+
+
+npm publish
+
+  npm config set registry https://registry.npmjs.org/    重置官网镜像源
+
+
+ 切换镜像源
+
+  npm install -g nrm
+
+
+
+
+
+  模块联邦   Federated  Modules 
+
+
+  webpack  优化  通用模块
+
+
+ dll    
+
+
+ work-pool
+
+thread-loader

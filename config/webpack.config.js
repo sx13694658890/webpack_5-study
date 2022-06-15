@@ -4,12 +4,11 @@ const prod=require("./webpack.prod");
 const commonConfig=require("./webpack.common");
 
 
-
-module.exports=(env)=>{
+中
     switch(true){
         case env.development:
             return merge(commonConfig,dev)
-            case env.production:
+            case env.production:ggv
                 return merge(commonConfig,prod)
                 default:
                     return new Error("没有配置到环境")

@@ -8,6 +8,14 @@ const yaml = require("yaml");
 const json5 = require("json5");
 const toml = require("toml");
 console.log("地址",require.resolve("../src/index.js"));
+
+
+// webpack 内置的模块联邦
+const { ModuleFederationPlugin }=require("webpack").container
+
+const ForksTsCheckerWebpackerPlugin=require("fork-ts-checker-webpack-plugin")
+
+
 const config = {
   entry: {
     //  方案1   代码抽离
@@ -57,7 +65,21 @@ const plugins = [
   // }),
   new webpack.ProvidePlugin({
     _:"lodash"
-  })
+  }),
+
+
+  new ModuleFederationPlugin({
+      name:"nav",
+      filename:"remoteEntry.js",
+      remotes:{
+        nav:"nav@http://localhost:3003/re,oteEntry.js"
+      },
+      exposes:{
+        "./Header":"../src/page/home.js"
+      },
+      shared:{}
+  }),
+  new ForksTsCheckerWebpackerPlugin()
 ];
 
 const moduleRule = {
@@ -151,12 +173,18 @@ const moduleRule = {
             plugins: [["@babel/plugin-transform-runtime"]],
           },
         },
+        {
+          loader:"thread-loader",// 打一些非常耗时的包    自身启动要耗时
+          options:{
+            workers:2
+          }
+        }
       ],
     },
     {
       test:/\.ts$/,
       exclude:/node_modules/,
-      use:["ts-loader"]
+      use:[{loader:"ts-loader",options:{transpileOnl:true}}]// 缩短使用ts-loader时的构建时间  此选项会关闭类型检查   ForkTsCheckerWebpackPlugin   此插件会移至单独进行   加快ts类型检查和eslint插入速度
     },
     // {
     //   test:require.resolve("../src/index.js"),
