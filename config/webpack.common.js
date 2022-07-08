@@ -17,7 +17,7 @@ const ForksTsCheckerWebpackerPlugin=require("fork-ts-checker-webpack-plugin")
 
 
 const config = {
-  entry: {
+  entry: resolve(__dirname, "../src/index.js")
     //  方案1   代码抽离
     // index:{
     //     import :resolve(__dirname,"../src/index.js"),  index   引入了lodash
@@ -28,21 +28,21 @@ const config = {
     //     dependOn:"shared"
     // },
     // shared:"lib/lodash"
-    index: resolve(__dirname, "../src/index.js"),
+  
     // another:resolve(__dirname,"../src/another-module.js"),
-  },
-  experiments:{
-      outputModule:true
-  },
+,
+  // experiments:{
+  //     outputModule:true
+  // },
   output: {
     filename: "scripts/[name].js",
     path: resolve(__dirname, "../dist"),
     clean: true, //  清除 打包
-    library:{
-      name:"mylib",
-      type:"umd" //umd适应所有的  window   commonjs  module 这时候就不需要name属性
-    },
-    globalObject:"globalThis",// 全局的this
+    // library:{
+    //   name:"mylib",
+    //   type:"umd" //umd适应所有的  window   commonjs  module 这时候就不需要name属性
+    // },
+    //globalObject:"globalThis",// 全局的this
     // assetModuleFileName:"./images/[name][ext]"
   },
 };
@@ -50,7 +50,7 @@ const plugins = [
   new HtmlWbpackPlugin({
     filename: "index.html",
     template: resolve(__dirname, "../index.html"),
-    chunkes: ["index"],
+  
     inject: "body", // script   js 位置   body\
     title: "webpack 5",
 
@@ -63,23 +63,23 @@ const plugins = [
   //     clientsClaim:true,  // 快速启用serverwork
   //     skipWaiting:true,    // 不允许使用旧的severwork
   // }),
-  new webpack.ProvidePlugin({
-    _:"lodash"
-  }),
+  // new webpack.ProvidePlugin({
+  //   _:"lodash"
+  // }),
 
 
-  new ModuleFederationPlugin({
-      name:"nav",
-      filename:"remoteEntry.js",
-      remotes:{
-        nav:"nav@http://localhost:3003/re,oteEntry.js"
-      },
-      exposes:{
-        "./Header":"../src/page/home.js"
-      },
-      shared:{}
-  }),
-  new ForksTsCheckerWebpackerPlugin()
+  // new ModuleFederationPlugin({
+  //     name:"nav",
+  //     filename:"remoteEntry.js",
+  //     remotes:{
+  //       nav:"nav@http://localhost:3003/re,oteEntry.js"
+  //     },
+  //     exposes:{
+  //       "./Header":"../src/page/home.js"
+  //     },
+  //     shared:{}
+  // }),
+  // new ForksTsCheckerWebpackerPlugin()
 ];
 
 const moduleRule = {
@@ -173,12 +173,12 @@ const moduleRule = {
             plugins: [["@babel/plugin-transform-runtime"]],
           },
         },
-        {
-          loader:"thread-loader",// 打一些非常耗时的包    自身启动要耗时
-          options:{
-            workers:2
-          }
-        }
+        // {
+        //   loader:"thread-loader",// 打一些非常耗时的包    自身启动要耗时
+        //   options:{
+        //     workers:2
+        //   }
+        // }
       ],
     },
     {
@@ -198,16 +198,16 @@ const moduleRule = {
 };
 // 优化
 const optimization = {
-  usedExports:true,// tree-shaking
+  //usedExports:true,// tree-shaking
   splitChunks: {
     //chunks:"all" //  js 代码抽离  共用js代码
-    cacheGroups: {
-      vendor: {
-        test: /[\\/]node_modules[\\/]/,
-        name: "vendors",
-        chunks: "all",
-      },
-    },
+    // cacheGroups: {
+    //   vendor: {
+    //     test: /[\\/]node_modules[\\/]/,
+    //     name: "vendors",
+    //     chunks: "all",
+    //   },
+    // },
   },
 };
 
@@ -216,10 +216,10 @@ module.exports = {
   plugins,
   module: moduleRule,
   // 第三方库
-  externalsType: "script",
-  externals: {
-    jquery: ["地址", "$"],
-  },
+  // externalsType: "script",
+  // externals: {
+  //   jquery: ["地址", "$"],
+  // },
   resolve:{
     extensions:[".ts",".js"]
   }

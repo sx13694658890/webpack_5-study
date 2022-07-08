@@ -1,13 +1,13 @@
-const http=require('http');
+const express = require('express')
+const app = express()
 
 
-const app=http.createServer((req,res)=>{
-    if(req.url=="/api/io"){
-        res.end("node http server")
-    }
-})
+app.get('/data', (req, res) => {
+    console.log('11111')
+    res.send('hello')
+  })
 
 
-app.listen(8088,"localhost",()=>{
-    console.log("server start");
+app.listen(8081, () => {
+  console.log('server is running in port:8081');
 })

@@ -35,9 +35,14 @@ const devServer={
         "X-Access-Token":"abc123"
     },
     proxy:{
-        "/api":"http://localhost:8088",
-        originPath:"",
-        pathRewrite:""
+        "/api":{
+            target:"http://localhost:8081",
+            originPath:true,
+            srcure:true,
+            pathRewrite: {
+                '^/api': ''
+            }
+        }
     },
     // https:true
 

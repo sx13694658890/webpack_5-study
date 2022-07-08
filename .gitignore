@@ -1,2 +1,10 @@
-**/node_modules
-**/dist
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build

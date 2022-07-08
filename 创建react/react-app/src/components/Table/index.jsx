@@ -1,13 +1,13 @@
 import React,{useState} from "react";
-
+import "./index.css"
 const Index = () => {
   const [datatr, setdatatr] = useState([1, 2, 3]);
   const [datatd, setdatatd] = useState([]);
   let dataMAIN = [];
   const [data, setdata] = useState([
     { name: 1, age: 2, sex: "男" ,run:"a"},
-    { name: 2, age: 2, sex: "男" ,run:"b", rowSpan: 3 },
-    { name: 3, age: 3, sex: "男" ,run:"c"},
+    { name: 2, age: 2, sex: "" ,run:"b", rowSpan: 3 },
+    { name: 1, age: 3, sex: "" ,run:"c"},
     { name: 4, age: 4, sex: "男",run:"d" },
     { name: 4, age: 4, sex: "男",run:"e" },
   ]);
@@ -30,13 +30,13 @@ const Index = () => {
       if (td.rowSpan) {
         if (td.rowSpan&&td.rowSpan>1) {
           for(let ii=td.rowSpan;ii>1;ii--)
-             delete dataMAIN[index +ii-1][i].value;
+             dataMAIN[index +ii-1].splice(i,1);
           }
       }
       // col
       if (td.colSpan&&td.colSpan>1) {
        for(let ii=td.colSpan;ii>1;ii--)
-          delete item[i+ii-1].value
+          delete item[i+ii-1]
         }
     });
   });
@@ -46,19 +46,18 @@ const Index = () => {
       align="center"
       border="1"
       width={"200px"}
-      cellPadding="0"
-      cellSpacing="0"
+      className={"table"}
     >
       <tbody>
         {dataMAIN.map((trs, index) => {
           return (
             <tr key={index}>
               {trs.map((td, i) => {
-                return td.value ? (
+                return  (
                   <td key={i} colSpan={td.colSpan} rowSpan={td.rowSpan}>
                     {td.value}
                   </td>
-                ) : null;
+                )  ;
               })}
             </tr>
           );
