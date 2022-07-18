@@ -2,11 +2,16 @@ import React, { useReducer,useState,useEffect,Fragment,useCallback } from "react
 
 
 import Home from "./pages/Home";
+import About from "./pages/About";
+import DerivedFromProps from "./pages/DerivedFromProps";
+import Sticky from "./components/Sticky"
 
 
 // import Card from "./components/Card";
 // import context from "./context/initContext";
 import Table from "./components/Table"
+
+
 //  useMemo useState use
 function App() {
  const [count,setCount]=useState(0)
@@ -72,6 +77,11 @@ const  reduce=(state,{type})=>{
   <div>
     <Home/>
     <Table/>
+    <br/>
+    <hr/>
+    <br/>
+    {/* <Sticky></Sticky> */}
+    <About/>
   {/* <select>
     <option value="1" key="1">1</option>
     <option value="2" key="2">2</option>
@@ -79,9 +89,12 @@ const  reduce=(state,{type})=>{
   </select> */}
   {/* <div onClick={handlerClick}>add</div>
   <table  onClick={handleClick}></table> */}
-  </div>
-
-    )
+  <button onClick={()=>setCount(count+1)}>setCount</button>
+ <DerivedFromProps 
+ num={count}
+ filename={Math.random()*10000}
+ ></DerivedFromProps>
+  </div>)
 }
 
 export default React.memo(App);

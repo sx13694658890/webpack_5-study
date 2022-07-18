@@ -21,9 +21,7 @@ const Index = () => {
 
     dataMAIN.push(datalist);
   });
-  console.log('====================================');
-  console.log(dataMAIN);
-  console.log('====================================');
+ 
   dataMAIN.forEach((item, index) => {
     item.forEach((td, i) => {
       // row
