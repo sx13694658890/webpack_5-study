@@ -92,7 +92,6 @@ const  reduce=(state,{type})=>{
   <button onClick={()=>setCount(count+1)}>setCount</button>
  <DerivedFromProps 
  num={count}
- filename={Math.random()*10000}
  ></DerivedFromProps>
   </div>)
 }
