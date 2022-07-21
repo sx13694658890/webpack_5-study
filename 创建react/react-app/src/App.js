@@ -119,6 +119,11 @@ function App() {
   <table  onClick={handleClick}></table> */}
     </div>
   );
+//   <button onClick={()=>setCount(count+1)}>setCount</button>
+//  <DerivedFromProps 
+//  num={count}
+//  ></DerivedFromProps>
+//   </div>)
 }
 
 export default React.memo(App);

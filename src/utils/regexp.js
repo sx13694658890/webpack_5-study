@@ -1,3 +1,5 @@
+const { reject } = require("lodash")
+
 //  千位格式   1234567=>  123,456,789
 const  formatMoney=(money)=>{
     return money.replace(new RegExp(`(?!^)(?=(\\d{3})+${money.includes(".")?'\\.':"$"})`,"g"),",")
@@ -44,5 +46,51 @@ const formatUrl=(url="http://qianlongo.github.io/vue-demos/dist/index.html?name=
         "'":"#39"
     }
     const excapeRegexp=new RegExp(`[${Object.keys(escapeMaps).join('')}]`,"g")
+    return string.replace(excapeRegexp,(match)=>`&${escapeMaps[match]};`)
  }
 
+//  html 逆性转译
+
+const unescape=(string)=>{
+    const unescapeMaps={
+        "amp":"&",
+        "lt":"<",
+        "gt":">",
+        "quot":'"',
+        "#39":"'"
+    }
+    const unescapeRegexp=/&([^;]+);/g
+    return string.replace(unescapeRegexp,(match,unescapeKey)=>{
+        return unescapeMaps[unescapeKey]||match
+    })
+}
+
+
+//  检查24小时制   
+const formatTime=(time)=>{
+    const check24TimeRegexp=/^(?:(?:0?|1)\d|2[0-3]:(?:0?|[1-5])\d$/;
+
+}
+
+// 检查日期格式  yyyy-mm-dd、yyyy.mm.dd、yyyy/mm/dd
+
+const formatCheck=(time)=>{
+    const checkDateRegexp=/^\d{4}([-\.\/])(?:0[1-9]|1[0-2])\1(?:0[1-9]|[12]\d|3[01]$/
+}
+
+// 获取网络图片地址
+const matchImgs=(sHtml)=>{
+    const imgUrlRegexp=/<img[^>]+src="((?:https?:)?\/\/[^"]+)"[^>]*?>/gi;
+    let matchImgUrls=[]
+    sHtml.replace(imgUrlRegexp,(match,$1)=>{
+        $1 && matchImgUrls.push($1)
+    })
+    return matchImgUrls
+}
+
+// 格式化电话号码
+let mobile="18379836654";
+const formatMobile=(tel)=>{
+    const mobileReg=/(?=(\d{4})+$)/g
+    return tel.replace(mobileReg,"-")
+}
