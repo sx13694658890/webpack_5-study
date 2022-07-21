@@ -1,0 +1,16 @@
+{
+  "name": "router-v6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-scripts": "5.0.1"
+  }
+}

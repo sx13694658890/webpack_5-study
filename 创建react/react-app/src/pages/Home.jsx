@@ -1,8 +1,8 @@
 import React from 'react';
 import {  useSelector ,useDispatch} from "react-redux"
 import { add,redu} from "../store/reduces/studentReducer"
-const Home = () => {
-
+const Home = (props) => {
+    console.log(props,"+++home+++");
     const student=useSelector(state=>state.student)
    
     const dispatch= useDispatch()

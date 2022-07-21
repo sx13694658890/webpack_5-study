@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import "./index.css"
-const Index = () => {
+const Index = (props) => {
+  console.log(props,"+++table+++");
   const [datatr, setdatatr] = useState([1, 2, 3]);
   const [datatd, setdatatd] = useState([]);
   let dataMAIN = [];
