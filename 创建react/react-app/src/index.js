@@ -6,10 +6,29 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux"
 import store from "./store"
 document.documentElement.style.fontSize=100/750 +"vw";
+import { lorem } from "./npm-package/utils/demo-lorem-ipsum";
+import tableprops from "./npm-package/lib/create-props-table"
+const Add=()=>{
+
+    
+    return(
+        <div>
+            <h5>lorem-ipsum</h5>
+{
+    lorem.generateWords(7)
+}
+{
+    tableprops({name:{default:"string",description:"姓名",type:"string",}})()
+}
+
+        </div>
+    )
+}
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- <Provider store={store}> <App /></Provider>
+ <Provider store={store}> <Add /></Provider>
    
 
 );

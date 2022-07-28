@@ -35,52 +35,10 @@ function App() {
     setCount(count + 1);
     dispatchState({ type: "a" });
   };
-  //  渲染完毕后进行比较
-  // useEffect(()=>{
-  //     if(count===10){
-  //         console.log("useEffect");
-  //     }
-  //     // 清除函数  执行useEffect前会触发
-  //     return ()=>{
 
-  //     }
-  // },[])
-  // useEffect(()=>{
-  //     //    fetch(url).then(async(response)=>{
-  //     //     if(response.ok) {
-  //     //         let data=await response.json()
-  //     //     } else{
-  //     //         setLoad(false)
-  //     //     }
-
-  //     //    })
-  //     try{
-  //         setError(null)
-  //         const fetDta=async()=>{
-  //             let response=await fetch(url,{method:"delete"})
-  //             if(response.ok){
-  //                 let data=await response.json()
-  //             }else{
-  //                 throw new Error("error:501-1-1")
-  //             }
-  //         }
-  //     }
-  //     catch(e){
-  //         setError(e)
-  //     }
-  //     finally{
-  //         setLoad(false)
-  //     }
-
-  // },[])
-  // const handleClick=useCallback(()=>{
-
-  // },[])
   return (
     <div>
-     
       <Router >
-
       <div className="nav">
       <ul className="navlink" >
         <li><Link to="/home/2" >home</Link></li>
@@ -99,7 +57,6 @@ function App() {
             render={(routerprops) => {
               <div>
                 <button onClick={() => setCount(count + 1)}>setCount</button>
-
                 <DerivedFromProps {...routerprops}
                   num={count}
                   filename={Math.random() * 10000}
@@ -109,21 +66,8 @@ function App() {
           ></Route>
         </Switch>
       </Router>
-
-      {/* <select>
-    <option value="1" key="1">1</option>
-    <option value="2" key="2">2</option>
-    <option value="3" key="3">3</option>
-  </select> */}
-      {/* <div onClick={handlerClick}>add</div>
-  <table  onClick={handleClick}></table> */}
     </div>
   );
-//   <button onClick={()=>setCount(count+1)}>setCount</button>
-//  <DerivedFromProps 
-//  num={count}
-//  ></DerivedFromProps>
-//   </div>)
 }
 
 export default React.memo(App);
